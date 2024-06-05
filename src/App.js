@@ -5,20 +5,23 @@ import { useState, useEffect } from 'react'
 
 function App() {
   const [success, setSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
 const handleSubmit = (e) =>{
   e.preventDefault()
   if(e.target.username.value==="user" && e.target.password.value==="password"){
 setSuccess(true);
   }
-  else{alert('Incorrect password')}
+  else{
+    setShowError(true);
+  }
 }
 
   return (
     <>
     <h2>Login Page</h2>
-   
-  {success?(<div>Welcome user!</div>):(<div>
+   {showError?<div>Invalid username or password</div>:""}
+  {success?(<p>Welcome, user</p>):(<div>
     <form onSubmit={handleSubmit}>
       <div style={{display:'flex', flexDirection: 'column'}}>
         <div>
